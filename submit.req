@@ -1,0 +1,36 @@
+# This is a config file for submitting jobs to the cluster scheduler.
+# The COMMAND is expected to be a script or binary.
+# This config file happens to be for running casa.
+
+#
+# These are required
+#
+DATADATE="14jun13"
+ASDMFILE="14A-425_sb29272092_1.56821.73800049769"    # 14jun13
+#ASDMFILE='14A-425_sb29260830_1.56824.29334541666'   # 14jun16
+MEMORY="4gb"			# memory per core.
+WORK_DIR="/lustre/aoc/projects/fasttransients/$DATADATE"
+#COMMAND="/lustre/aoc/projects/fasttransients/code/calibrate.sh"     # batch calibration
+COMMAND="/lustre/aoc/projects/fasttransients/code/search.sh ${DATADATE} ${ASDMFILE}"         # batch search
+
+#
+# These are optional
+#
+JOB_NAME="${DATADATE}"	# <= 15 non-whitespace characters.  First character alphabetic.
+NUM_NODES="5"		# default is 1
+NUM_CORES="15"		# default is 1
+MAILTO="claw"		# default is the user submitting the job
+#QUEUE="batch"		# default is the batch queue
+STDOUT="my_out" 	# file relative to WORK_DIR.  default is no output
+STDERR="my_err" 	# file relative to WORK_DIR.  default is no output
+
+# MAIL_OPTIONS:
+#   n  no mail will be sent.
+#   a  mail is sent when the job is aborted by the batch system.
+#   b  mail is sent when the job begins execution.
+#   e  mail is sent when the job terminates.
+MAIL_OPTIONS="abe"	# default is "n" therefore no email
+
+#PROLOGUE="/lustre/aoc/projects/fasttransients/rrat-j0628/prologue_script"
+#EPILOGUE="/lustre/aoc/projects/fasttransients/code/epilogue_script"
+UMASK="0117"

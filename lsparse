@@ -1,0 +1,21 @@
+#!/usr/bin/env ksh
+
+typeset -Z2 d m
+Jan=1 Feb=2 Mar=3 Apr=4 May=5 Jun=6 Jul=7 Aug=8 Sep=9 Oct=10 Nov=11 Dec=12
+date "+%Y %m" | read year month
+
+for i ; do
+        line=$(ls -dl $i)
+        line=${line##+([! ])+([ ])}
+        line=${line##+([! ])+([ ])}
+        line=${line##+([! ])+([ ])}
+        line=${line##+([! ])+([ ])}
+        line=${line##+([! ])+([ ])}
+        set -A stamp $line
+        d=${stamp[1]}
+        eval m=\$${stamp[0]}
+        y=${stamp[2]}
+        ((${#y} != 4)) && ((y=year-(m>month)))
+        echo $y $m $d $i
+done
+exit 0

@@ -1,0 +1,15 @@
+#!/usr/bin/env tcsh
+
+if $#argv != 1 then
+   echo 'wtf?  give me file root.'
+   exit(1)
+endif
+
+set file = $argv[1]
+
+pdflatex ${file}
+bibtex ${file}
+pdflatex ${file}
+pdflatex ${file}
+#dvips -Ppdf -G0 ${file}.dvi -o ${file}.ps -t letter
+#ps2pdf14 ${file}.ps ${file}.pdf
