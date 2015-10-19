@@ -23,7 +23,7 @@ def read_metadata(sdmname):
     sc,sr = sdmreader.read_metadata(sdmname)
     return sc, sr
 
-def all(scanlist=[], pklname='rfiarray.pkl'):
+def all(scanlist=[], pklname='rfiarray_57214.pkl'):
     """ Wrapper for functions to create or read data to visualize RFI
     pklname, if exists, will be read. Otherwise, values read/calculated and written to pklname.
     """
